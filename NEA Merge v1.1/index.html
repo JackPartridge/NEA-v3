@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <style>
+
+    table.GeneratedTable {
+      font-family: 'Helvetica', 'Arial', sans-serif;
+      font-size: 11pt;
+      opacity: 0;
+      text-align: center;
+      vertical-align: top;
+      background-color: #e66b19;
+      border-collapse: collapse;
+      border-width: 2px;
+      border-color: #000000;
+      border-style: groove;
+      color: #000000;
+      margin: 60px;
+      position: fixed;
+      height: 20vh;
+      width: 400px;
+    }
+
+    table.GeneratedTable td, table.GeneratedTable th {
+      border-width: 2px;
+      border-color: #000000;
+      border-style: groove;
+      padding: 3px;
+    }
+
+    table.GeneratedTable thead {
+      background-color: #898989;
+    }
+
+  </style>
+
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maze Game | Jack Partridge</title>
+  <script src="Libraries/p5.js"></script>
+  <script src="Libraries/p5.dom.js"></script>
+  <script src="runnable/sketch.js"></script>
+  <script src="runnable/Cell.js"></script>
+  <script src="runnable/mazeGeneration.js"></script>
+  <script src="runnable/depthFirstSearch.js"></script>
+  <script src="runnable/aStar.js"></script>
+  <script src="runnable/dijkstras.js"></script>
+  <script src="runnable/userControl.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  //<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/addons/p5.sound.js"></script>
+
+</head>
+
+<body style="background-color:rgb(43,43,44);">
+  <main>
+    <table class="GeneratedTable" id = GeneratedTable>
+      <thead>
+      <tr>
+        <th>Algorithm</th>
+        <th>Colour</th>
+        <th>Time (ms)</th>
+        <th>Moves</th>
+        <th>Maze Size</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Dijkstra's</td>
+        <td>Yellow</td>
+        <td><p id="djTimeTaken"></p></td>
+        <td><p id="djMoves"></p></td>
+        <td><p id="djSizeOfGrid"></p></td>
+      </tr>
+      <tr>
+        <td>A Star</td>
+        <td>Pink</td>
+        <td><p id="aTimeTaken"></p></td>
+        <td><p id="aMoves"></p></td>
+        <td><p id="aSizeOfGrid"></p></td>
+      </tr>
+      <tr>
+        <td>DFS</td>
+        <td>Blue</td>
+        <td><p id="timeTaken"></p></td>
+        <td><p id="dsMoves"></p></td>
+        <td><p id="dsSizeOfGrid"></p></td>
+      </tr>
+      </tbody>
+    </table>
+  </main>
+</body>
+
+</html>
