@@ -1,4 +1,4 @@
-p5.disableFriendlyErrors = true
+//p5.disableFriendlyErrors = true
 let rows, cols, grid;
 let sizeOfGrid = 10;
 let s;
@@ -27,13 +27,13 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function preload() {
+/*function preload() {
     soundFormats('mp3');
     backgroundMusic = loadSound("assets/NGGUP8Bit");
     backgroundMusic.playMode('untilDone');
     backgroundMusic.setVolume(0.2);
 
-}
+}*/
 
 function setup() {
 

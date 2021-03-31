@@ -1,5 +1,4 @@
-
-function Dijkstras(){
+function Dijkstras() {
 
     resetValues();
     pathFinding = true;
@@ -12,48 +11,7 @@ function Dijkstras(){
 
     while (current !== end) {
         if (openStack.length > 0) {
-            let lowestIndex = 0;
-
-            for (let i = 0; i < openStack.length; i++) {
-                if (openStack[i].f < openStack[lowestIndex].f) {
-                    lowestIndex = i;
-                }
-            }
-            current = openStack[lowestIndex];
-
-            //remove current from available moves
-            const index = openStack.indexOf(current);
-            if (index > -1) {
-                openStack.splice(index, 1);
-            }
-            //
-            closedStack.push(current)
-
-            neighbours = current.neighbours;
-
-            for (let i in neighbours) {
-                neighbour = neighbours[i];
-
-                let pathFound = false;
-                if (!(closedStack.includes(neighbour))) {
-                    let tempG = current.g + 1;
-
-                    if (openStack.includes(neighbour)) {
-                        if (tempG < neighbour.g) {
-                            neighbour.g = tempG;
-                            pathFound = true;
-                        }
-                    } else {
-                        neighbour.g = tempG
-                        pathFound = true;
-                        openStack.push(neighbour)
-                    }
-                    if (pathFound) {
-                        neighbour.f = neighbour.g
-                        neighbour.previous = current;
-                    }
-                }
-            }
+            MostEfficientPath(false);
             if (current === end) {
                 let endTime = window.performance.now();
                 djTimeTaken = endTime - startTime
@@ -80,16 +38,7 @@ function Dijkstras(){
                     text: "TIME TAKEN: " + djTimeTaken.toPrecision(5) + " ms" + " || MOVES NEEDED: " + djMoves,
                     allowOutsideClick: false,
                 });
-                //`console.log(`"DJ: " + djTimeTaken.toPrecision(5) + " ms" + " || MOVES NEEDED: " + djMoves)
-                //COMMENT OUT IF GENERATION NOT REQUIRED INSTANTLY
-                //break;
             }
-        } else {
-            console.log("Error! No solution. Should not reach here (DJ)");
-            //COMMENT OUT IF GENERATION NOT REQUIRED INSTANTLY
-            //current.highlight(color(20, 220, 180, 200));
-            //COMMENT OUT IF GENERATION NOT REQUIRED INSTANTLY
-            //break;
         }
     }
 }

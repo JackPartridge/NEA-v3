@@ -10,14 +10,10 @@ function DepthFirstSearch() {
         }
     }
     let startTime = window.performance.now();
-    //COMMENT OUT IF GENERATION NOT REQUIRED INSTANTLY
     while (current !== end) {
 
         current.visited = true;
         path.push(current)
-
-        //COMMENT OUT IF GENERATION REQUIRED INSTANTLY
-        //current.highlight(color(201, 50, 181));
 
         const next = current.adjacentNodes();
 
@@ -56,8 +52,6 @@ function DepthFirstSearch() {
                 text: "TIME TAKEN: " + timeTaken.toPrecision(5) + " ms" + " || MOVES NEEDED: " + dsMoves,
                 allowOutsideClick: false,
             });
-            //console.log("DFS: " + timeTaken.toPrecision(5) + " ms" + " || MOVES NEEDED: " + dsMoves)
         }
-        //COMMENT OUT IF GENERATION NOT REQUIRED INSTANTLY
     }
 }
