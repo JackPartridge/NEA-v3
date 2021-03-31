@@ -11,50 +11,9 @@ function AStar() {
         }
     }
     let startTime = window.performance.now();
-    //COMMENT OUT IF GENERATION NOT REQUIRED INSTANTLY
     while (current !== end) {
         if (openStack.length > 0) {
-            let lowestIndex = 0;
-
-            for (let i = 0; i < openStack.length; i++) {
-                if (openStack[i].f < openStack[lowestIndex].f) {
-                    lowestIndex = i;
-                }
-            }
-            current = openStack[lowestIndex];
-
-            //remove current from available moves
-            const index = openStack.indexOf(current);
-            if (index > -1) {
-                openStack.splice(index, 1);
-            }
-            //
-            closedStack.push(current)
-
-            neighbours = current.neighbours;
-            for (var i in neighbours) {
-                neighbour = neighbours[i];
-                let pathFound = false;
-                if (!(closedStack.includes(neighbour))) {
-                    let tempG = current.g + 1;
-
-                    if (openStack.includes(neighbour)) {
-                        if (tempG < neighbour.g) {
-                            neighbour.g = tempG;
-                            pathFound = true;
-                        }
-                    } else {
-                        neighbour.g = tempG
-                        pathFound = true;
-                        openStack.push(neighbour)
-                    }
-                    if (pathFound) {
-                        neighbour.h = heuristicCurrentToEnd(neighbour, end);
-                        neighbour.f = neighbour.g + neighbour.h;
-                        neighbour.previous = current;
-                    }
-                }
-            }
+            MostEfficientPath(true);
             if (current === end) {
                 let endTime = window.performance.now();
                 aTimeTaken = endTime - startTime
@@ -70,8 +29,6 @@ function AStar() {
                 aMoves = aPath.length;
                 document.getElementById('aMoves').innerHTML = aMoves;
 
-                //COMMENT OUT IF GENERATION NOT REQUIRED INSTANTLY
-                //current.highlight(color(20, 220, 180, 200));
                 for (let i in closedStack) {
                     noStroke();
                     closedStack[i].show(color(220));
@@ -81,16 +38,57 @@ function AStar() {
                     text: "TIME TAKEN: " + aTimeTaken.toPrecision(5) + " ms" + " || MOVES NEEDED: " + aMoves,
                     allowOutsideClick: false,
                 });
-                //console.log("A Star: " + aTimeTaken.toPrecision(5) + " ms" + " || MOVES NEEDED: " + aMoves)
-                //COMMENT OUT IF GENERATION NOT REQUIRED INSTANTLY
-                //break;
             }
-        } else {
-            console.log("Error! No solution. Should not reach here (A*)");
         }
+    }
+}
 
-        function heuristicCurrentToEnd(a, b) {
-            return Math.abs(a.i - b.i) + Math.abs(a.j - b.j);
+function MostEfficientPath(isAStar) {
+    let lowestIndex = 0;
+
+    for (let i = 0; i < openStack.length; i++) {
+        if (openStack[i].f < openStack[lowestIndex].f) {
+            lowestIndex = i;
         }
+    }
+
+    current = openStack[lowestIndex];
+
+    //remove current from available moves
+    const index = openStack.indexOf(current);
+    if (index > -1) {
+        openStack.splice(index, 1);
+    }
+    closedStack.push(current)
+    neighbours = current.neighbours;
+
+    for (let i in neighbours) {
+        neighbour = neighbours[i];
+        let pathFound = false;
+        if (!(closedStack.includes(neighbour))) {
+            let tempG = current.g + 1;
+
+            if (openStack.includes(neighbour)) {
+                if (tempG < neighbour.g) {
+                    neighbour.g = tempG;
+                    pathFound = true;
+                }
+            } else {
+                neighbour.g = tempG
+                pathFound = true;
+                openStack.push(neighbour)
+            }
+            if (pathFound) {
+                if (isAStar) {
+                    neighbour.h = heuristicCurrentToEnd(neighbour, end);
+                }
+                neighbour.f = neighbour.g + neighbour.h;
+                neighbour.previous = current;
+            }
+        }
+    }
+
+    function heuristicCurrentToEnd(a, b) {
+        return Math.abs(a.i - b.i) + Math.abs(a.j - b.j);
     }
 }

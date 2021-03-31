@@ -33,7 +33,10 @@ function MazeGeneration() {
 function wallRemover(m, n) {
     const x = m.i - n.i;
     const y = m.j - n.j;
-    let rndNum = Math.floor(Math.random() * 100);
+    //let rndNum = Math.floor(Math.random() * 100);
+    const crypto = window.crypto;
+    let array = new Uint32Array(1);
+    let rndNum = crypto.getRandomValues(array);
     if (x === 1) {
         if (rndNum >= 50 && current.i !== rows - 1) {
             m.walls[1] = false;
