@@ -1,8 +1,5 @@
 p5.disableFriendlyErrors = true
 let rows, cols, grid;
-/*let rows = 100;
-let cols = 100;
-let grid = new Array(rows);*/
 let sizeOfGrid = 10;
 let s;
 let current;
@@ -23,7 +20,6 @@ let aMoves = 0;
 let dsMoves = 0;
 let userNode;
 let backgroundMusic;
-let startup = true;
 
 let r;
 
@@ -68,7 +64,7 @@ function setup() {
 
     background(220)
 
-    mazeGeneration();
+    MazeGeneration();
     checkIfAllVisited();
 
     end.walls[1] = true
@@ -89,18 +85,15 @@ function draw() {
     //player implementation
     if (searchToHappen) {
         let table = document.getElementById('GeneratedTable');
-        aStar();
+        AStar();
         if (sizeOfGrid <= 100) {
-            depthFirstSearch()
-            dijkstras();
+            DepthFirstSearch()
+            Dijkstras();
         }
         //Swal.queue(alertUser)
         table.style.opacity = 100
         searchToHappen = false;
     }
-    //stroke(0);
-    //strokeWeight(8);
-    //rect(4, 4, cvsFrame + 8, cvsFrame + 8);
     strokeWeight(s - 2)
     stroke(220);
     fill(220);

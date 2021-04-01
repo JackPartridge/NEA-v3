@@ -4,6 +4,16 @@
 <head>
   <style>
 
+    caption {
+      text-align: center;
+      background-position: center;
+      background-color: darkslategray;
+      color: whitesmoke;
+      font-weight: normal;
+      padding: 5px;
+      margin: 2px;
+    }
+
     table.GeneratedTable {
       font-family: 'Helvetica', 'Arial', sans-serif;
       font-size: 11pt;
@@ -12,9 +22,9 @@
       vertical-align: top;
       background-color: #e66b19;
       border-collapse: collapse;
-      border-width: 2px;
+      border-width: 3px;
       border-color: #000000;
-      border-style: groove;
+      border-style: double;
       color: #000000;
       margin: 60px;
       position: fixed;
@@ -43,30 +53,35 @@
   <script src="Libraries/p5.dom.js"></script>
   <script src="runnable/sketch.js"></script>
   <script src="runnable/Cell.js"></script>
-  <script src="runnable/mazeGeneration.js"></script>
-  <script src="runnable/depthFirstSearch.js"></script>
-  <script src="runnable/aStar.js"></script>
-  <script src="runnable/dijkstras.js"></script>
-  <script src="runnable/userControl.js"></script>
+  <script src="runnable/MazeGeneration.js"></script>
+  <script src="runnable/DepthFirstSearch.js"></script>
+  <script src="runnable/AStar.js"></script>
+  <script src="runnable/Dijkstras.js"></script>
+  <script src="runnable/UserControl.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   //<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/addons/p5.sound.js"></script>
 
 </head>
 
+
+
 <body style="background-color:rgb(43,43,44);">
   <main>
+
     <table class="GeneratedTable" id = GeneratedTable>
+      <caption>Maze Algorithms Statuses</caption>
       <thead>
       <tr>
-        <th>Algorithm</th>
-        <th>Colour</th>
-        <th>Time (ms)</th>
-        <th>Moves</th>
-        <th>Maze Size</th>
+        <th scope="col">Algorithm</th>
+        <th scope="col">Colour</th>
+        <th scope="col">Time (ms)</th>
+        <th scope="col">Moves</th>
+        <th scope="col">Maze Size</th>
       </tr>
       </thead>
       <tbody>
+
       <tr>
         <td>Dijkstra's</td>
         <td>Yellow</td>

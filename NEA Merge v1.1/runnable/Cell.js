@@ -110,8 +110,8 @@ function Cell(i, j) {
     }
 
     this.checkNeighbours = function () {
-        let i = this.i;
-        let j = this.j;
+        i = this.i;
+        j = this.j;
 
         if (i < rows - 1) {
             if (pathFinding) {
@@ -189,7 +189,7 @@ function Cell(i, j) {
         stroke(col);
         strokeWeight(s / 2)
         beginShape();
-        for (let i = 0; i < path.length; i++) {
+        for (let i in path) {
             vertex(path[i].i * s + s / 2 + 8, path[i].j * s + s / 2 + 8);
         }
         endShape();
@@ -201,7 +201,7 @@ function Cell(i, j) {
         stroke(col);
         strokeWeight(s / 2)
         beginShape();
-        for (let i = 0; i < aPath.length; i++) {
+        for (let i in aPath) {
             vertex(aPath[i].i * s + s / 2 + 8, aPath[i].j * s + s / 2 + 8);
         }
         endShape();
@@ -213,7 +213,7 @@ function Cell(i, j) {
         stroke(col);
         strokeWeight(s / 2)
         beginShape();
-        for (let i = 0; i < djPath.length; i++) {
+        for (let i in djPath) {
             vertex(djPath[i].i * s + s / 2 + 8, djPath[i].j * s + s / 2 + 8);
         }
         endShape();
